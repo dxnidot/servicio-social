@@ -1,0 +1,138 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{amsmath, amssymb}
+\usepackage{geometry}
+\geometry{a4paper, margin=2.5cm}
+\usepackage{xcolor}
+\usepackage{tcolorbox}
+\tcbuselibrary{skins}
+
+\definecolor{azulIPn}{HTML}{003DA5}
+\definecolor{verdeMatem}{HTML}{1de9b6}
+\definecolor{rojoSuper}{HTML}{ff6b6b}
+\definecolor{moradoVec}{HTML}{9b59b6}
+
+\newtcolorbox{definicion}[1]{
+  colback=azulIPn!10, colframe=azulIPn,
+  fonttitle=\bfseries, title=Definición: #1
+}
+\newtcolorbox{ejemplo}{
+  colback=verdeMatem!10, colframe=verdeMatem!60!black,
+  fonttitle=\bfseries, title=Ejemplo
+}
+\newtcolorbox{nota}{
+  colback=rojoSuper!10, colframe=rojoSuper!60!black,
+  fonttitle=\bfseries, title=Nota importante
+}
+
+\title{\textcolor{azulIPn}{\textbf{Nota 03 — Superficies Paramétricas}} \\
+       \large Cálculo Vectorial aplicado a animaciones}
+\author{Daniel Tovar Abraham \\ ESCOM -- IPN}
+\date{Servicio Social 2026}
+
+\begin{document}
+\maketitle
+
+% -----------------------------------------------
+\section{¿Qué es una superficie paramétrica?}
+% -----------------------------------------------
+
+\begin{definicion}{Superficie paramétrica}
+  Una superficie paramétrica es una función vectorial 
+  $\vec{r}: D \subset \mathbb{R}^2 \to \mathbb{R}^3$ que mapea 
+  dos parámetros $(u, v)$ a un punto en el espacio:
+  \[
+    \vec{r}(u,v) = \bigl(x(u,v),\; y(u,v),\; z(u,v)\bigr)
+  \]
+\end{definicion}
+
+% -----------------------------------------------
+\section{Vectores tangentes y normal}
+% -----------------------------------------------
+
+Para una superficie paramétrica $\vec{r}(u,v)$ se definen:
+
+\subsection{Vectores tangentes parciales}
+\[
+  \vec{r}_u = \frac{\partial \vec{r}}{\partial u} = 
+  \left(\frac{\partial x}{\partial u},\;
+        \frac{\partial y}{\partial u},\;
+        \frac{\partial z}{\partial u}\right)
+\]
+\[
+  \vec{r}_v = \frac{\partial \vec{r}}{\partial v} = 
+  \left(\frac{\partial x}{\partial v},\;
+        \frac{\partial y}{\partial v},\;
+        \frac{\partial z}{\partial v}\right)
+\]
+
+\subsection{Vector normal}
+\[
+  \hat{n} = \frac{\vec{r}_u \times \vec{r}_v}{\|\vec{r}_u \times \vec{r}_v\|}
+\]
+
+\begin{nota}
+  Si en algún punto $\vec{r}_u \times \vec{r}_v = \vec{0}$, 
+  la superficie tiene un \textbf{punto singular} — no se puede 
+  definir la normal ahí.
+\end{nota}
+
+% -----------------------------------------------
+\section{Ejemplo: Cinta de Möbius}
+% -----------------------------------------------
+
+\begin{ejemplo}
+La Cinta de Möbius se parametriza como:
+\[
+  \vec{r}(u,v) = \left(
+    \left(R + v\cos\tfrac{u}{2}\right)\cos u,\;
+    \left(R + v\cos\tfrac{u}{2}\right)\sin u,\;
+    v\sin\tfrac{u}{2}
+  \right)
+\]
+con $u \in [0, 2\pi]$, $v \in [-1, 1]$ y $R = 2$.
+
+\medskip
+\textbf{¿Por qué es especial?}
+\begin{itemize}
+  \item Tiene \textcolor{rojoSuper}{\textbf{solo una cara}} — si recorres 
+        toda la superficie regresas al punto de inicio pero 
+        en el lado opuesto
+  \item Tiene \textcolor{rojoSuper}{\textbf{solo un borde}} — un único 
+        lazo continuo
+  \item Es \textcolor{azulIPn}{\textbf{no orientable}} — el vector normal 
+        $\hat{n}$ no se puede definir de forma continua en toda la superficie
+\end{itemize}
+\end{ejemplo}
+
+% -----------------------------------------------
+\section{Ejemplos de otras superficies}
+% -----------------------------------------------
+
+\subsection{Esfera}
+\[
+  \vec{r}(\phi, \theta) = 
+  \bigl(R\sin\phi\cos\theta,\; R\sin\phi\sin\theta,\; R\cos\phi\bigr)
+\]
+con $\phi \in [0,\pi]$, $\theta \in [0, 2\pi]$.
+
+\subsection{Toro}
+\[
+  \vec{r}(u,v) = 
+  \bigl((R + r\cos v)\cos u,\; (R + r\cos v)\sin u,\; r\sin v\bigr)
+\]
+con $u, v \in [0, 2\pi]$, $R$ = radio mayor, $r$ = radio menor.
+
+\subsection{Paraboloide}
+\[
+  \vec{r}(u,v) = \bigl(u,\; v,\; u^2 + v^2\bigr)
+\]
+
+\bigskip
+\begin{nota}
+  Todas estas superficies se pueden animar en Manim usando \texttt{Surface()} 
+  con la misma parametrización que aparece aquí.
+\end{nota}
+
+\end{document}

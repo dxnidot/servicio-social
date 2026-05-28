@@ -1,0 +1,331 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{geometry}
+\geometry{a4paper, margin=2.5cm}
+\usepackage{xcolor}
+\usepackage{tcolorbox}
+\tcbuselibrary{skins}
+\usepackage{multicol}
+\usepackage{hyperref}
+
+\definecolor{azulIPn}{HTML}{003DA5}
+\definecolor{verdeMatem}{HTML}{1de9b6}
+\definecolor{rojoSuper}{HTML}{ff6b6b}
+\definecolor{morado}{HTML}{9b59b6}
+\definecolor{grisSutil}{gray}{0.92}
+
+\newtcolorbox{seccion}[1]{
+  colback=azulIPn!8, colframe=azulIPn,
+  fonttitle=\bfseries\large, title=#1,
+  before=\bigskip, after=\medskip
+}
+\newtcolorbox{tip}{
+  colback=verdeMatem!10, colframe=verdeMatem!60!black,
+  fonttitle=\bfseries, title=Tip
+}
+
+\title{\textcolor{azulIPn}{\textbf{Nota 01 — Comandos más usados en \LaTeX}} \\
+       \large Referencia rápida completa}
+\author{Daniel Tovar Abraham \\ ESCOM -- IPN}
+\date{Servicio Social 2026}
+
+\begin{document}
+\maketitle
+\tableofcontents
+\newpage
+
+% ================================================
+\section{Estructura básica de un documento}
+% ================================================
+
+Todo documento LaTeX tiene esta estructura mínima:
+
+\begin{verbatim}
+\documentclass[12pt]{article}   % tipo de documento
+\usepackage[utf8]{inputenc}      % caracteres especiales
+\usepackage[spanish]{babel}      % idioma
+
+\begin{document}
+  Aquí va el contenido
+\end{document}
+\end{verbatim}
+
+\textbf{Tipos de documento más comunes:}
+\begin{itemize}
+  \item \texttt{article} — artículos y reportes cortos
+  \item \texttt{report}  — reportes largos con capítulos
+  \item \texttt{book}    — libros
+  \item \texttt{beamer}  — presentaciones
+\end{itemize}
+
+% ================================================
+\section{Paquetes más usados}
+% ================================================
+
+\begin{verbatim}
+\usepackage{amsmath}      % fórmulas matemáticas avanzadas
+\usepackage{amssymb}      % símbolos matemáticos extra
+\usepackage{graphicx}     % insertar imágenes
+\usepackage{xcolor}       % colores
+\usepackage{tcolorbox}    % cajas de colores
+\usepackage{geometry}     % márgenes y tamaño de página
+\usepackage{hyperref}     % links clickeables
+\usepackage{multicol}     % múltiples columnas
+\usepackage{booktabs}     % tablas bonitas
+\usepackage{listings}     % bloques de código
+\usepackage{tikz}         % gráficas y diagramas
+\usepackage{pgfplots}     % gráficas de funciones
+\end{verbatim}
+
+% ================================================
+\section{Texto y formato}
+% ================================================
+
+\begin{seccion}{Estilos de texto}
+\begin{tabular}{ll}
+  \verb|\textbf{texto}|   & \textbf{negrita} \\[4pt]
+  \verb|\textit{texto}|   & \textit{cursiva} \\[4pt]
+  \verb|\underline{texto}| & \underline{subrayado} \\[4pt]
+  \verb|\texttt{texto}|   & \texttt{monoespaciado} \\[4pt]
+  \verb|\textsc{texto}|   & \textsc{versalitas} \\[4pt]
+  \verb|\emph{texto}|     & \emph{énfasis} \\[4pt]
+\end{tabular}
+\end{seccion}
+
+\begin{seccion}{Tamaños de fuente}
+\begin{tabular}{ll}
+  \verb|\tiny|        & {\tiny tiny} \\[2pt]
+  \verb|\small|       & {\small small} \\[2pt]
+  \verb|\normalsize|  & {\normalsize normalsize} \\[2pt]
+  \verb|\large|       & {\large large} \\[2pt]
+  \verb|\Large|       & {\Large Large} \\[2pt]
+  \verb|\huge|        & {\huge huge} \\[2pt]
+\end{tabular}
+\end{seccion}
+
+\begin{seccion}{Alineación}
+\begin{verbatim}
+\begin{center}    texto centrado    \end{center}
+\begin{flushleft} texto izquierda   \end{flushleft}
+\begin{flushright} texto derecha    \end{flushright}
+\end{verbatim}
+\end{seccion}
+
+% ================================================
+\section{Listas}
+% ================================================
+
+\begin{multicols}{2}
+
+\textbf{Lista con viñetas:}
+\begin{verbatim}
+\begin{itemize}
+  \item Primer elemento
+  \item Segundo elemento
+    \begin{itemize}
+      \item Sub-elemento
+    \end{itemize}
+\end{itemize}
+\end{verbatim}
+
+\columnbreak
+
+\textbf{Lista numerada:}
+\begin{verbatim}
+\begin{enumerate}
+  \item Primero
+  \item Segundo
+  \item Tercero
+\end{enumerate}
+\end{verbatim}
+
+\end{multicols}
+
+% ================================================
+\section{Matemáticas — Lo más importante}
+% ================================================
+
+\begin{seccion}{Modos matemáticos}
+\begin{tabular}{lll}
+  \textbf{Modo} & \textbf{Código} & \textbf{Resultado} \\[4pt]
+  \hline\\
+  Inline   & \verb|$f(x) = x^2$|         & $f(x) = x^2$ \\[6pt]
+  Display  & \verb|\[ f(x) = x^2 \]|     & se centra en línea propia \\[6pt]
+  Numerada & \verb|\begin{equation}...\end{equation}| & con número \\
+\end{tabular}
+\end{seccion}
+
+\begin{seccion}{Operaciones básicas}
+\begin{tabular}{lll}
+  \textbf{Símbolo} & \textbf{Código} & \textbf{Resultado} \\[4pt]
+  \hline\\
+  Superíndice  & \verb|x^{2}|           & $x^{2}$ \\[4pt]
+  Subíndice    & \verb|x_{i}|           & $x_{i}$ \\[4pt]
+  Fracción     & \verb|\frac{a}{b}|     & $\frac{a}{b}$ \\[4pt]
+  Raíz         & \verb|\sqrt{x}|        & $\sqrt{x}$ \\[4pt]
+  Raíz n-ésima & \verb|\sqrt[n]{x}|     & $\sqrt[n]{x}$ \\[4pt]
+  Suma         & \verb|\sum_{i=0}^{n}|  & $\sum_{i=0}^{n}$ \\[4pt]
+  Integral     & \verb|\int_{a}^{b}|    & $\int_{a}^{b}$ \\[4pt]
+  Límite       & \verb|\lim_{x\to 0}|   & $\lim_{x\to 0}$ \\[4pt]
+  Infinito     & \verb|\infty|          & $\infty$ \\[4pt]
+\end{tabular}
+\end{seccion}
+
+\begin{seccion}{Letras griegas}
+\begin{multicols}{2}
+\begin{tabular}{ll}
+  \verb|\alpha|   & $\alpha$ \\
+  \verb|\beta|    & $\beta$ \\
+  \verb|\gamma|   & $\gamma$ \\
+  \verb|\delta|   & $\delta$ \\
+  \verb|\epsilon| & $\epsilon$ \\
+  \verb|\theta|   & $\theta$ \\
+  \verb|\lambda|  & $\lambda$ \\
+  \verb|\mu|      & $\mu$ \\
+\end{tabular}
+\columnbreak
+\begin{tabular}{ll}
+  \verb|\pi|      & $\pi$ \\
+  \verb|\rho|     & $\rho$ \\
+  \verb|\sigma|   & $\sigma$ \\
+  \verb|\tau|     & $\tau$ \\
+  \verb|\phi|     & $\phi$ \\
+  \verb|\omega|   & $\omega$ \\
+  \verb|\Omega|   & $\Omega$ \\
+  \verb|\Delta|   & $\Delta$ \\
+\end{tabular}
+\end{multicols}
+\end{seccion}
+
+\begin{seccion}{Vectores y cálculo}
+\begin{tabular}{lll}
+  \textbf{Símbolo}   & \textbf{Código}            & \textbf{Resultado} \\[4pt]
+  \hline\\
+  Vector             & \verb|\vec{v}|              & $\vec{v}$ \\[4pt]
+  Vector unitario    & \verb|\hat{n}|              & $\hat{n}$ \\[4pt]
+  Norma & \texttt{$\backslash$||v||} & $\|\vec{v}\|$ \\[4pt]  Producto cruz      & \verb|\times|               & $\times$ \\[4pt]
+  Parcial            & \verb|\partial|             & $\partial$ \\[4pt]
+  Gradiente          & \verb|\nabla f|             & $\nabla f$ \\[4pt]
+  Pertenece          & \verb|\in|                  & $\in$ \\[4pt]
+  Para todo          & \verb|\forall|              & $\forall$ \\[4pt]
+  Existe             & \verb|\exists|              & $\exists$ \\[4pt]
+\end{tabular}
+\end{seccion}
+
+\begin{seccion}{Paréntesis y delimitadores}
+\begin{tabular}{lll}
+  \verb|\left( \right)|    & $\left( \frac{a}{b} \right)$  & paréntesis auto \\[6pt]
+  \verb|\left[ \right]|    & $\left[ \frac{a}{b} \right]$  & corchetes auto \\[6pt]
+  \verb|\left\{ \right\}|  & $\left\{ \frac{a}{b} \right\}$ & llaves auto \\[6pt]
+  \verb|\left\vert \right\vert| & $\left\vert x \right\vert$ & valor absoluto \\[6pt]
+\end{tabular}
+\end{seccion}
+
+% ================================================
+\section{Colores}
+% ================================================
+
+\begin{verbatim}
+\usepackage{xcolor}
+
+% Definir color propio
+\definecolor{miColor}{HTML}{003DA5}   % hex
+\definecolor{miColor}{rgb}{0,0.2,0.6} % rgb 0-1
+\definecolor{miColor}{gray}{0.5}      % escala de grises
+
+% Usar colores
+\textcolor{miColor}{texto de color}
+\colorbox{miColor}{texto con fondo}
+\textcolor{red!50!blue}{mezcla 50/50}
+\end{verbatim}
+
+% ================================================
+\section{Secciones y estructura}
+% ================================================
+
+\begin{verbatim}
+\section{Título de sección}
+\subsection{Subsección}
+\subsubsection{Sub-subsección}
+\paragraph{Párrafo con título}
+\end{verbatim}
+
+Para tabla de contenidos automática:
+\begin{verbatim}
+\tableofcontents   % donde quieres que aparezca
+\newpage           % salto de página
+\end{verbatim}
+
+% ================================================
+\section{Tablas}
+% ================================================
+
+\begin{verbatim}
+\begin{tabular}{|l|c|r|}   % l=izq, c=centro, r=der, |=línea
+  \hline
+  Columna 1 & Columna 2 & Columna 3 \\
+  \hline
+  dato 1    & dato 2    & dato 3    \\
+  dato 4    & dato 5    & dato 6    \\
+  \hline
+\end{tabular}
+\end{verbatim}
+
+\begin{tip}
+Con el paquete \texttt{booktabs} las tablas se ven más profesionales:
+usa \verb|\toprule|, \verb|\midrule| y \verb|\bottomrule| 
+en lugar de \verb|\hline|.
+\end{tip}
+
+% ================================================
+\section{Imágenes}
+% ================================================
+
+\begin{verbatim}
+\usepackage{graphicx}
+
+\begin{figure}[h]          % h=aquí, t=top, b=bottom
+  \centering
+  \includegraphics[width=0.8\textwidth]{imagen.png}
+  \caption{Descripción de la imagen}
+  \label{fig:mobius}        % para referenciar con \ref{fig:mobius}
+\end{figure}
+\end{verbatim}
+
+% ================================================
+\section{Espaciado y saltos}
+% ================================================
+
+\begin{tabular}{ll}
+  \verb|\\|          & salto de línea \\[4pt]
+  \verb|\newpage|    & nueva página \\[4pt]
+  \verb|\bigskip|    & espacio grande vertical \\[4pt]
+  \verb|\medskip|    & espacio mediano vertical \\[4pt]
+  \verb|\smallskip|  & espacio pequeño vertical \\[4pt]
+  \verb|\hspace{1cm}| & espacio horizontal de 1cm \\[4pt]
+  \verb|\vspace{1cm}| & espacio vertical de 1cm \\[4pt]
+  \verb|\noindent|   & sin sangría al inicio de párrafo \\[4pt]
+\end{tabular}
+
+% ================================================
+\section{Caracteres especiales}
+% ================================================
+
+\begin{tabular}{ll}
+  \verb|\%|  & \% \\[4pt]
+  \verb|\$|  & \$ \\[4pt]
+  \verb|\&|  & \& \\[4pt]
+  \verb|\#|  & \# \\[4pt]
+  \verb|\_|  & \_ \\[4pt]
+  \verb|\{|  & \{ \\[4pt]
+  \verb|\textbackslash| & \textbackslash \\[4pt]
+\end{tabular}
+
+\begin{tip}
+Compila con \texttt{Ctrl+Alt+B} en VS Code y ve el PDF 
+con \texttt{Ctrl+Alt+V}. Guarda seguido para ver cambios en tiempo real.
+\end{tip}
+
+\end{document}

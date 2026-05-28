@@ -1,0 +1,124 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{amsmath, amssymb}
+\usepackage{geometry}
+\geometry{a4paper, margin=2.5cm}
+\usepackage{xcolor}
+\usepackage{tcolorbox}
+\tcbuselibrary{skins}
+
+\definecolor{azulIPn}{HTML}{003DA5}
+\definecolor{verdeMatem}{HTML}{1de9b6}
+\definecolor{rojoSuper}{HTML}{ff6b6b}
+
+\newtcolorbox{definicion}[1]{
+  colback=azulIPn!10, colframe=azulIPn,
+  fonttitle=\bfseries, title=Definición: #1
+}
+\newtcolorbox{nota}{
+  colback=rojoSuper!10, colframe=rojoSuper!60!black,
+  fonttitle=\bfseries, title=Nota importante
+}
+
+\title{\textcolor{azulIPn}{\textbf{Nota 02 — Vectores y Operaciones Básicas}} \\
+       \large Introducción al Cálculo Vectorial}
+\author{Daniel Tovar Abraham \\ ESCOM -- IPN}
+\date{Servicio Social 2026}
+
+\begin{document}
+\maketitle
+
+% -----------------------------------------------
+\section{Vectores en $\mathbb{R}^3$}
+% -----------------------------------------------
+
+Un vector en $\mathbb{R}^3$ se escribe como:
+\[
+  \vec{v} = (v_1,\, v_2,\, v_3) = v_1\,\hat{i} + v_2\,\hat{j} + v_3\,\hat{k}
+\]
+
+donde $\hat{i}$, $\hat{j}$, $\hat{k}$ son los vectores unitarios en las 
+direcciones $x$, $y$, $z$ respectivamente.
+
+% -----------------------------------------------
+\section{Operaciones básicas}
+% -----------------------------------------------
+
+\subsection{Suma y resta}
+\[
+  \vec{u} \pm \vec{v} = (u_1 \pm v_1,\; u_2 \pm v_2,\; u_3 \pm v_3)
+\]
+
+\subsection{Magnitud (norma)}
+\[
+  \|\vec{v}\| = \sqrt{v_1^2 + v_2^2 + v_3^2}
+\]
+
+\subsection{Vector unitario}
+\[
+  \hat{v} = \frac{\vec{v}}{\|\vec{v}\|}
+\]
+
+\begin{nota}
+  Un vector unitario tiene magnitud 1. Se usa para indicar 
+  \textbf{solo la dirección}, sin importar la magnitud.
+  En las animaciones: $\|\hat{n}\| = 1$ es el vector normal unitario 
+  a una superficie.
+\end{nota}
+
+% -----------------------------------------------
+\section{Producto punto (escalar)}
+% -----------------------------------------------
+
+\begin{definicion}{Producto punto}
+  \[
+    \vec{u} \cdot \vec{v} = u_1 v_1 + u_2 v_2 + u_3 v_3 
+                          = \|\vec{u}\|\,\|\vec{v}\|\cos\theta
+  \]
+  donde $\theta$ es el ángulo entre los vectores.
+\end{definicion}
+
+\textbf{Propiedades importantes:}
+\begin{itemize}
+  \item Si $\vec{u} \cdot \vec{v} = 0$ entonces $\vec{u} \perp \vec{v}$
+  \item $\vec{u} \cdot \vec{u} = \|\vec{u}\|^2$
+  \item Conmutativo: $\vec{u} \cdot \vec{v} = \vec{v} \cdot \vec{u}$
+\end{itemize}
+
+% -----------------------------------------------
+\section{Producto cruz (vectorial)}
+% -----------------------------------------------
+
+\begin{definicion}{Producto cruz}
+  \[
+    \vec{u} \times \vec{v} = 
+    \begin{vmatrix}
+      \hat{i} & \hat{j} & \hat{k} \\
+      u_1 & u_2 & u_3 \\
+      v_1 & v_2 & v_3
+    \end{vmatrix}
+    = (u_2 v_3 - u_3 v_2)\,\hat{i} 
+    - (u_1 v_3 - u_3 v_1)\,\hat{j} 
+    + (u_1 v_2 - u_2 v_1)\,\hat{k}
+  \]
+\end{definicion}
+
+\textbf{Propiedades importantes:}
+\begin{itemize}
+  \item El resultado es un vector \textbf{perpendicular} a ambos
+  \item $\|\vec{u} \times \vec{v}\| = \|\vec{u}\|\,\|\vec{v}\|\sin\theta$
+  \item \textbf{No} es conmutativo: $\vec{u} \times \vec{v} = -(\vec{v} \times \vec{u})$
+\end{itemize}
+
+\bigskip
+\begin{nota}
+  El producto cruz se usa para calcular el \textbf{vector normal} a una 
+  superficie paramétrica:
+  \[
+    \hat{n} = \frac{\vec{r}_u \times \vec{r}_v}{\|\vec{r}_u \times \vec{r}_v\|}
+  \]
+  Esto es exactamente lo que aparece en la animación de la Cinta de Möbius.
+\end{nota}
+
+\end{document}
